@@ -5,8 +5,101 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SuperheroLog"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Superhero Log" Height="650" Width="1100" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" FontSize="16" FontWeight="Bold" Background="#223C5B">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <ContentControl 
+            Content="{Binding}"
+            Grid.Column="1" 
+            Grid.Row="1"
+            Grid.RowSpan="4" 
+            Height="Auto"
+            Width="Auto"/>
+        
+        <Label 
+            x:Name="lblWindowName" 
+            Content="Windows Name" 
+            Grid.Column="1" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            FontSize="36" 
+            Foreground="#ffffff"/>
+
+        <StackPanel 
+            Grid.Row="1" 
+            VerticalAlignment="Center">
+            <Button 
+                Content="Characters"
+                Grid.Row="1" 
+                Name="btnCharacters" 
+                Height="50" 
+                Width="150" 
+                Cursor="Hand"/>
+        </StackPanel>
+
+        <StackPanel 
+            Grid.Row="2" 
+            VerticalAlignment="Center">
+            <Button 
+                Content="Missions"
+                Grid.Row="1" 
+                Name="btnMissions" 
+                Height="50" 
+                Width="150" 
+                Cursor="Hand"/>
+        </StackPanel>
+
+        <StackPanel 
+            Grid.Row="3" 
+            VerticalAlignment="Center">
+            <Button 
+                Content="Universes"
+                Grid.Row="1" 
+                Name="btnUniverses" 
+                Height="50" 
+                Width="150" 
+                Cursor="Hand"/>
+        </StackPanel>
+
+        <StackPanel 
+            Grid.Row="4" 
+            VerticalAlignment="Center">
+            <Button 
+                Content="Teams"
+                Grid.Row="1" 
+                Name="btnTeams" 
+                Height="50" 
+                Width="150" 
+                Cursor="Hand"/>
+        </StackPanel>
+
+        <StackPanel 
+            Grid.Row="7"
+            Grid.Column="3"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Right" 
+            Margin="0,0,15,15">
+            <Button 
+                Content="Log out"
+                Grid.Row="1" 
+                Name="btnLogout" 
+                Height="50" 
+                Width="150" 
+                Cursor="Hand"/>
+        </StackPanel>
     </Grid>
 </Window>
