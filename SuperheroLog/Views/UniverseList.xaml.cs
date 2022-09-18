@@ -43,5 +43,28 @@ namespace SuperheroLog.Views
             gridUniverse.ItemsSource = database.Universes.OrderBy(universe => universe.UniverseName).ToList();
             this.Visibility = Visibility.Visible;
         }
+
+        private void BtnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            Universe universe = (Universe)gridUniverse.SelectedItem;
+
+            if (universe != null && universe.Id != 0)
+            {
+                if (MessageBox.Show("Are you sure you want to delete this item?", 
+                    "Question", 
+                    MessageBoxButton.YesNo, 
+                    MessageBoxImage.Warning) 
+                    == 
+                    MessageBoxResult.Yes)
+                {
+                    SUPERHEROBASEContext database = new();
+                    Universe department = database.Universes.Find(universe.Id);
+                    database.Universes.Remove(department);
+                    database.SaveChanges();
+                    MessageBox.Show("Item was deleted successfully");
+                    gridUniverse.ItemsSource = database.Universes.OrderBy(universe => universe.UniverseName).ToList();
+                }
+            }
+        }
     }
 }

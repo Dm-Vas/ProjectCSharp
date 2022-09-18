@@ -44,7 +44,8 @@
                 Grid.Column="2" 
                 FontSize="16"
                 Cursor="Hand" 
-                Margin="30,10,30,10"/>
+                Margin="30,10,30,10"
+                Click="BtnDelete_Click"/>
         </Grid>
 
         <DataGrid 
