@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SuperheroLog.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="550" d:DesignWidth="1200">
+             d:DesignHeight="550" 
+             d:DesignWidth="1200">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="6*"/>
@@ -34,7 +35,8 @@
                 Grid.Column="1" 
                 FontSize="16"
                 Cursor="Hand" 
-                Margin="30,10,30,10"/>
+                Margin="30,10,30,10"
+                Click="BtnUpdate_Click"/>
 
             <Button 
                 Name="btnDelete" 

@@ -29,5 +29,19 @@ namespace SuperheroLog.Views
             gridUniverse.ItemsSource = list;
             this.Visibility = Visibility.Visible;
         }
+
+        private void BtnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            Universe universe = (Universe)gridUniverse.SelectedItem;
+            UniverseWindow window = new()
+            {
+                universe = universe
+            };
+            this.Visibility = Visibility.Collapsed;
+            window.ShowDialog();
+            using SUPERHEROBASEContext database = new();
+            gridUniverse.ItemsSource = database.Universes.OrderBy(universe => universe.UniverseName).ToList();
+            this.Visibility = Visibility.Visible;
+        }
     }
 }
