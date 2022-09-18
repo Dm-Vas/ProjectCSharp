@@ -5,6 +5,6 @@
         public int Id { get; set; }
         public string? TeamName { get; set; }
         public string? UniverseName { get; set; }
-        public int UniversetId { get; set; }
+        public int UniverseId { get; set; }
     }
 }

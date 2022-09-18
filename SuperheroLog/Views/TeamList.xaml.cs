@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SuperheroLog.Database;
 using SuperheroLog.ViewModels;
 using System.Collections.Generic;
@@ -51,7 +51,7 @@ namespace SuperheroLog.Views
                     Id = item.teamId,
                     TeamName = item.teamName,
                     UniverseName = item.universeName,
-                    UniversetId = item.universeId
+                    UniverseId = item.universeId
                 };
                 modellist.Add(model);
             }
