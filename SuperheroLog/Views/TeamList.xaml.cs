@@ -27,10 +27,8 @@ namespace SuperheroLog.Views
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             TeamWindow window = new();
-            this.Visibility = Visibility.Collapsed;
             window.ShowDialog();
             FillGrid();
-            this.Visibility = Visibility.Visible;
         }
 
         void FillGrid()
