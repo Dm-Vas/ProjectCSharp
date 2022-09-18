@@ -14,8 +14,8 @@ namespace SuperheroLog.Views
         public UniverseList()
         {
             InitializeComponent();
-            using SUPERHEROBASEContext databse = new();
-            List<Universe> list = databse.Universes.OrderBy(univerce => univerce.UniverseName).ToList();
+            using SUPERHEROBASEContext database = new();
+            List<Universe> list = database.Universes.OrderBy(univerce => univerce.UniverseName).ToList();
             gridUniverse.ItemsSource = list;
         }
 
