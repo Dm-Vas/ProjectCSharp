@@ -1,4 +1,4 @@
-﻿using SuperheroLog.ViewModels;
+using SuperheroLog.ViewModels;
 using System.Windows;
 
 namespace SuperheroLog
@@ -11,6 +11,8 @@ namespace SuperheroLog
         public MainWindow()
         {
             InitializeComponent();
+            lblWindowName.Content = "Character List";
+            DataContext = new CharacterViewModel();
         }
 
         private void BtnCharacters_Click(object sender, RoutedEventArgs e)
