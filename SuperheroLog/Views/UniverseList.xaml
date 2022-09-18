@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="SuperheroLog.Views.UniverseList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SuperheroLog.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button 
+                Name="btnCreate" 
+                Content="Create"
+                Grid.Column="0" 
+                FontSize="16"
+                Cursor="Hand" 
+                Margin="30,10,30,10"/>
+
+            <Button 
+                Name="btnUpdate" 
+                Content="Update"
+                Grid.Column="1" 
+                FontSize="16"
+                Cursor="Hand" 
+                Margin="30,10,30,10"/>
+
+            <Button 
+                Name="btnDelete" 
+                Content="Delete"
+                Grid.Column="2" 
+                FontSize="16"
+                Cursor="Hand" 
+                Margin="30,10,30,10"/>
+        </Grid>
+
+        <DataGrid 
+            x:Name="gridUniverse" 
+            IsReadOnly="True" 
+            AutoGenerateColumns="False" 
+            SelectionUnit="FullRow">
+            <DataGrid.Columns>
+                <DataGridTextColumn 
+                    Binding="{Binding Id}" 
+                    Header="Id"
+                    Width="*" 
+                    Visibility="Hidden"/>
+                
+                <DataGridTextColumn
+                    Binding="{Binding UniverseName}"
+                    Header="Universe Name" 
+                    Width="auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

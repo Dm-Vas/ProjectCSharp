@@ -4,8 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SuperheroLog"
+        xmlns:views="clr-namespace:SuperheroLog.Views"
+        xmlns:viewmodels="clr-namespace:SuperheroLog.ViewModels"
         mc:Ignorable="d"
-        Title="Superhero Log" Height="650" Width="1100" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" FontSize="16" FontWeight="Bold" Background="#223C5B">
+        Title="Superhero Log" 
+        Height="650" 
+        Width="1100" 
+        WindowStartupLocation="CenterScreen" 
+        ResizeMode="NoResize" 
+        FontSize="16" 
+        FontWeight="Bold" 
+        Background="#223C5B">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -72,7 +81,8 @@
                 Name="btnUniverses" 
                 Height="50" 
                 Width="150" 
-                Cursor="Hand"/>
+                Cursor="Hand" 
+                Click="BtnUniverses_Click"/>
         </StackPanel>
 
         <StackPanel 
@@ -102,4 +112,12 @@
                 Cursor="Hand"/>
         </StackPanel>
     </Grid>
+
+    <Window.Resources>
+        <DataTemplate x:Name="UniverseTemplate" DataType="{x:Type viewmodels:UniverseViewModel}">
+            <views:UniverseList>
+                
+            </views:UniverseList>
+        </DataTemplate>
+    </Window.Resources>
 </Window>
