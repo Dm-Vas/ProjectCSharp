@@ -13,6 +13,12 @@ namespace SuperheroLog
             InitializeComponent();
         }
 
+        private void BtnCharacters_Click(object sender, RoutedEventArgs e)
+        {
+            lblWindowName.Content = "Character List";
+            DataContext = new CharacterViewModel();
+        }
+
         private void BtnUniverses_Click(object sender, RoutedEventArgs e)
         {
             lblWindowName.Content = "Universe List";

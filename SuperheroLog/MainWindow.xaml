@@ -38,7 +38,7 @@
             Grid.RowSpan="4" 
             Height="Auto"
             Width="Auto"/>
-        
+
         <Label 
             x:Name="lblWindowName" 
             Content="Windows Name" 
@@ -57,7 +57,8 @@
                 Name="btnCharacters" 
                 Height="50" 
                 Width="150" 
-                Cursor="Hand"/>
+                Cursor="Hand"
+                Click="BtnCharacters_Click"/>
         </StackPanel>
 
         <StackPanel 
@@ -67,8 +68,8 @@
                 Content="Missions"
                 Grid.Row="1" 
                 Name="btnMissions" 
-                Height="50" 
-                Width="150" 
+                Height="50"
+                Width="150"
                 Cursor="Hand"/>
         </StackPanel>
 
@@ -81,7 +82,7 @@
                 Name="btnUniverses" 
                 Height="50" 
                 Width="150" 
-                Cursor="Hand" 
+                Cursor="Hand"
                 Click="BtnUniverses_Click"/>
         </StackPanel>
 
@@ -94,7 +95,7 @@
                 Name="btnTeams" 
                 Height="50" 
                 Width="150" 
-                Cursor="Hand" 
+                Cursor="Hand"
                 Click="BtnTeams_Click"/>
         </StackPanel>
 
@@ -109,22 +110,34 @@
                 Grid.Row="1" 
                 Name="btnLogout" 
                 Height="50" 
-                Width="150" 
+                Width="150"
                 Cursor="Hand"/>
         </StackPanel>
     </Grid>
 
     <Window.Resources>
-        <DataTemplate x:Name="UniverseTemplate" DataType="{x:Type viewmodels:UniverseViewModel}">
+        <DataTemplate 
+            x:Name="UniverseTemplate"
+            DataType="{x:Type viewmodels:UniverseViewModel}">
             <views:UniverseList>
-                
+
             </views:UniverseList>
         </DataTemplate>
 
-        <DataTemplate x:Name="TeamTemplate" DataType="{x:Type viewmodels:TeamViewModel}">
+        <DataTemplate 
+            x:Name="TeamTemplate"
+            DataType="{x:Type viewmodels:TeamViewModel}">
             <views:TeamList>
 
             </views:TeamList>
+        </DataTemplate>
+
+        <DataTemplate 
+            x:Name="CharacterTemplate"
+            DataType="{x:Type viewmodels:CharacterViewModel}">
+            <views:CharacterList>
+
+            </views:CharacterList>
         </DataTemplate>
     </Window.Resources>
 </Window>
