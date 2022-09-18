@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:SuperheroLog"
         mc:Ignorable="d"
         Title="Character Window" 
-        Height="650" 
-        Width="1100" 
+        Height="450" 
+        Width="900" 
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Background="#223C5B">
+        Background="#223C5B"
+        Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50*"/>
@@ -46,7 +47,8 @@
             Name="txtCharacterNo"
             Height="30"
             VerticalAlignment="Center"
-            TextWrapping="Wrap"/>
+            TextWrapping="Wrap" 
+            PreviewTextInput="TxtCharacterNo_PreviewTextInput"/>
 
         <Label
             Grid.Column="0"
@@ -108,10 +110,21 @@
             Grid.Column="1"  
             Grid.Row="4"
             Name="txtImage"
+            IsReadOnly="True"
             TextWrapping="Wrap" 
             VerticalAlignment="Center" 
             Height="30"/>
-             
+
+        <Button             
+            Grid.Column="2"  
+            Grid.Row="4"
+            Content="Upload"
+            x:Name="btnUpload"
+            Width="70"
+            Height="30" 
+            Cursor="Hand"
+            Click="BtnUpload_Click"/>
+
         <Image
             Grid.Column="3" 
             Grid.ColumnSpan="2"
@@ -134,7 +147,8 @@
             Grid.Row="5" 
             Name="cmbUniverse"
             Height="30"
-            VerticalAlignment="Center"/>
+            VerticalAlignment="Center" 
+            SelectionChanged="CmbUniverse_SelectionChanged"/>
         
         <Label
             Grid.Column="0"
@@ -191,7 +205,9 @@
             x:Name="btnSave" 
             Content="Save"
             Width="120"
-            Height="30"/>
+            Height="30" 
+            Cursor="Hand"
+            Click="BtnSave_Click"/>
         
         <Button
             Grid.Column="3" 
@@ -199,6 +215,8 @@
             x:Name="btnClose" 
             Content="Close"
             Width="120"
-            Height="30"/>
+            Height="30"
+            Cursor="Hand"
+            Click="BtnClose_Click"/>
     </Grid>
 </Window>

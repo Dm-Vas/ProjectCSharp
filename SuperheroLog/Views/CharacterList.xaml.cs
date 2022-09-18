@@ -11,5 +11,11 @@ namespace SuperheroLog.Views
         {
             InitializeComponent();
         }
+
+        private void BtnAdd_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            CharacterWindow windwow = new();
+            windwow.ShowDialog();
+        }
     }
 }
