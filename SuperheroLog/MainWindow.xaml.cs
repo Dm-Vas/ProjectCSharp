@@ -18,5 +18,11 @@ namespace SuperheroLog
             lblWindowName.Content = "Universe List";
             DataContext = new UniverseViewModel();
         }
+
+        private void BtnTeams_Click(object sender, RoutedEventArgs e)
+        {
+            lblWindowName.Content = "Team List";
+            DataContext = new TeamViewModel();
+        }
     }
 }

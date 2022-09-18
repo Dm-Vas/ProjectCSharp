@@ -94,7 +94,8 @@
                 Name="btnTeams" 
                 Height="50" 
                 Width="150" 
-                Cursor="Hand"/>
+                Cursor="Hand" 
+                Click="BtnTeams_Click"/>
         </StackPanel>
 
         <StackPanel 
@@ -118,6 +119,12 @@
             <views:UniverseList>
                 
             </views:UniverseList>
+        </DataTemplate>
+
+        <DataTemplate x:Name="TeamTemplate" DataType="{x:Type viewmodels:TeamViewModel}">
+            <views:TeamList>
+
+            </views:TeamList>
         </DataTemplate>
     </Window.Resources>
 </Window>
