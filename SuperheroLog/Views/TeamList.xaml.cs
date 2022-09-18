@@ -70,5 +70,27 @@ namespace SuperheroLog.Views
                 FillGrid();
             }
         }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            TeamModel model = (TeamModel)gridTeam.SelectedItem;
+
+            if (model != null && model.Id != 0)
+            {
+                if (MessageBox.Show("Are you sure you want to delete it?", 
+                    "Question", 
+                    MessageBoxButton.YesNo, 
+                    MessageBoxImage.Warning) 
+                    == 
+                    MessageBoxResult.Yes)
+                {
+                    Team team = database.Teams.Find(model.Id);
+                    database.Teams.Remove(team);
+                    database.SaveChanges();
+                    MessageBox.Show("Item was deleted successfully");
+                    FillGrid();
+                }
+            }
+        }
     }
 }

@@ -58,6 +58,14 @@ namespace SuperheroLog.Views
                     MessageBoxResult.Yes)
                 {
                     SUPERHEROBASEContext database = new();
+
+                    List<Team> teams = database.Teams.Where(team => team.UniverseId == universe.Id).ToList();
+                    foreach (var item in teams)
+                    {
+                        database.Teams.Remove(item);
+                    }
+                    database.SaveChanges();
+
                     Universe department = database.Universes.Find(universe.Id);
                     database.Universes.Remove(department);
                     database.SaveChanges();
