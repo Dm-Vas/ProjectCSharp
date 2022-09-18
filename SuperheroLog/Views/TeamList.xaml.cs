@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SuperheroLog.Database;
 using SuperheroLog.ViewModels;
 using System.Collections.Generic;
@@ -56,6 +56,21 @@ namespace SuperheroLog.Views
                 modellist.Add(model);
             }
             gridTeam.ItemsSource = modellist;
+        }
+
+        private void BtnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            TeamModel model = (TeamModel)gridTeam.SelectedItem;
+
+            if (model != null && model.Id != 0)
+            {
+                TeamWindow window = new()
+                {
+                    model = model
+                };
+                window.ShowDialog();
+                FillGrid();
+            }
         }
     }
 }

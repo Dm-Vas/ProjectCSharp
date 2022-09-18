@@ -36,7 +36,8 @@
                 Grid.Column="1" 
                 FontSize="16"
                 Cursor="Hand" 
-                Margin="30,10,30,10"/>
+                Margin="30,10,30,10" 
+                Click="BtnUpdate_Click"/>
 
             <Button 
                 Name="btnDelete" 
@@ -50,6 +51,7 @@
         <DataGrid 
             x:Name="gridTeam" 
             IsReadOnly="True" 
+            SelectionMode="Single"
             AutoGenerateColumns="False" 
             SelectionUnit="FullRow">
             <DataGrid.Columns>
