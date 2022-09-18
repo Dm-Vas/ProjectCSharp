@@ -4,6 +4,7 @@ using SuperheroLog.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace SuperheroLog.Views
@@ -22,6 +23,7 @@ namespace SuperheroLog.Views
         {
             CharacterWindow windwow = new();
             windwow.ShowDialog();
+            FillDataGrid();
         }
 
         SUPERHEROBASEContext database = new();
@@ -29,34 +31,7 @@ namespace SuperheroLog.Views
         List<CharacterDetailModel> list = new();
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            cmbUniverse.ItemsSource = database.Universes.ToList();
-            cmbUniverse.DisplayMemberPath = "UniverseName";
-            cmbUniverse.SelectedValuePath = "Id";
-            cmbUniverse.SelectedIndex = -1;
-
-            teams = database.Teams.ToList();
-            cmbTeam.ItemsSource = teams;
-            cmbTeam.DisplayMemberPath = "TeamName";
-            cmbTeam.SelectedValuePath = "Id";
-            cmbTeam.SelectedIndex = -1;
-
-            list = database.Characters.Include(character => character.Team).Include(character => character.Universe).Select(character => new CharacterDetailModel()
-            {
-                Id = character.Id,
-                CharacterNo = character.CharacterNo,
-                Alias = character.Alias,
-                Name = character.Name,
-                Surname = character.Surname,
-                Bio = character.Bio,
-                UniverseId = character.UniverseId,
-                UniverseName = character.Universe.UniverseName,
-                TeamId = character.TeamId,
-                TeamName = character.Team.TeamName,
-                ImagePath = character.ImagePath,
-                Password = character.Password
-            }).ToList();
-
-            gridCharacter.ItemsSource = list;
+            FillDataGrid();
         }
 
         private void CmbUniverse_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -107,6 +82,49 @@ namespace SuperheroLog.Views
             cmbUniverse.SelectedIndex = -1;
             cmbTeam.ItemsSource = teams;
             cmbTeam.SelectedIndex = -1;
+            gridCharacter.ItemsSource = list;
+        }
+
+        private void BtnUpdate_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            CharacterDetailModel model = (CharacterDetailModel)gridCharacter.SelectedItem;
+            CharacterWindow windopw = new()
+            {
+                model = model
+            };
+            windopw.ShowDialog();
+            FillDataGrid();
+        }
+
+        void FillDataGrid()
+        {
+            cmbUniverse.ItemsSource = database.Universes.ToList();
+            cmbUniverse.DisplayMemberPath = "UniverseName";
+            cmbUniverse.SelectedValuePath = "Id";
+            cmbUniverse.SelectedIndex = -1;
+
+            teams = database.Teams.ToList();
+            cmbTeam.ItemsSource = teams;
+            cmbTeam.DisplayMemberPath = "TeamName";
+            cmbTeam.SelectedValuePath = "Id";
+            cmbTeam.SelectedIndex = -1;
+
+            list = database.Characters.Include(character => character.Team).Include(character => character.Universe).Select(character => new CharacterDetailModel()
+            {
+                Id = character.Id,
+                CharacterNo = character.CharacterNo,
+                Alias = character.Alias,
+                Name = character.Name,
+                Surname = character.Surname,
+                Bio = character.Bio,
+                UniverseId = character.UniverseId,
+                UniverseName = character.Universe.UniverseName,
+                TeamId = character.TeamId,
+                TeamName = character.Team.TeamName,
+                ImagePath = character.ImagePath,
+                Password = character.Password
+            }).ToList();
+
             gridCharacter.ItemsSource = list;
         }
     }

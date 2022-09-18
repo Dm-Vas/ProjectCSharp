@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using SuperheroLog.Database;
+using SuperheroLog.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,6 +24,7 @@ namespace SuperheroLog
         }
         SUPERHEROBASEContext database = new();
         List<Team> teams = new();
+        public CharacterDetailModel model;
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             cmbUniverse.ItemsSource = database.Universes.ToList();
@@ -35,6 +37,23 @@ namespace SuperheroLog
             cmbTeam.DisplayMemberPath = "TeamName";
             cmbTeam.SelectedValuePath = "Id";
             cmbTeam.SelectedIndex = -1;
+
+            if (model != null && model.Id != 0)
+            {
+                txtCharacterNo.Text = model.CharacterNo.ToString();
+                txtAlias.Text = model.Alias;
+                txtName.Text = model.Name;
+                txtSurname.Text = model.Surname;
+                cmbUniverse.SelectedValue = model.UniverseId;
+                cmbTeam.SelectedValue = model.TeamId;
+                txtBio.AppendText(model.Bio);
+                txtPassword.Text = model.Password;
+                BitmapImage image = new();
+                image.BeginInit();
+                image.UriSource = new Uri(@"Images/" + model.ImagePath, UriKind.RelativeOrAbsolute);
+                image.EndInit();
+                CharacterImage.Source = image;
+            }
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
@@ -88,48 +107,93 @@ namespace SuperheroLog
                 MessageBox.Show("Please fill in all the required fields");
             }
             else {
-                var Uniquelist = database.Characters.Where(character => character.CharacterNo == Convert.ToInt32(txtCharacterNo.Text)).ToList();
 
-                if (Uniquelist.Count > 0)
+                if (model != null && model.Id != 0) 
                 {
-                    MessageBox.Show("This Character Number is already taken. Please try another one");
+                    Character character = database.Characters.Find(model.Id);
+                    List<Character> characterList = database.Characters.Where(characterItem =>
+                      characterItem.CharacterNo == 
+                      Convert.ToInt32(txtCharacterNo.Text) &&
+                      characterItem.Id != character.Id).ToList();
+
+                    if (characterList.Count > 0)
+                    {
+                        MessageBox.Show("This Character Number already exists. Please try another one");
+                    }
+                    else
+                    {
+                        if (txtImage.Text.Trim() != "")
+                        {
+                            if (File.Exists(@"Images//" + character.ImagePath))
+                            {
+                                File.Delete(@"Images//" + character.ImagePath);
+                                string filename = "";
+                                string Unique = Guid.NewGuid().ToString();
+                                filename += Unique + System.IO.Path.GetFileName(txtImage.Text);
+                                File.Copy(txtImage.Text, @"Images//" + filename);
+                                character.ImagePath = filename;
+                            }
+
+
+                        }
+                        character.CharacterNo = Convert.ToInt32(txtCharacterNo.Text);
+                        character.Alias = txtAlias.Text;
+                        character.Name = txtName.Text;
+                        character.Surname = txtSurname.Text;
+                        character.UniverseId = Convert.ToInt32(cmbUniverse.SelectedValue);
+                        character.TeamId = Convert.ToInt32(cmbTeam.SelectedValue);
+                        character.Password = txtPassword.Text;
+                        TextRange Bio = new(txtBio.Document.ContentStart, txtBio.Document.ContentEnd);
+                        character.Bio = Bio.Text;
+                        database.SaveChanges();
+                        MessageBox.Show("Character was updated successfully");
+                    }
                 }
                 else
                 {
-                    Character character = new()
+                    var Uniquelist = database.Characters.Where(character => character.CharacterNo == Convert.ToInt32(txtCharacterNo.Text)).ToList();
+
+                    if (Uniquelist.Count > 0)
                     {
-                        CharacterNo = Convert.ToInt32(txtCharacterNo.Text),
-                        Alias = txtAlias.Text,
-                        Name = txtName.Text,
-                        Surname = txtSurname.Text,
-                        Password = txtPassword.Text
-                    };
-                    TextRange bio = new(txtBio.Document.ContentStart, txtBio.Document.ContentEnd);
-                    character.Bio = bio.Text;
-                    character.UniverseId = Convert.ToInt32(cmbUniverse.SelectedValue);
-                    character.TeamId = Convert.ToInt32(cmbTeam.SelectedValue);
+                        MessageBox.Show("This Character Number is already taken. Please try another one");
+                    }
+                    else
+                    {
+                        Character character = new()
+                        {
+                            CharacterNo = Convert.ToInt32(txtCharacterNo.Text),
+                            Alias = txtAlias.Text,
+                            Name = txtName.Text,
+                            Surname = txtSurname.Text,
+                            Password = txtPassword.Text
+                        };
+                        TextRange bio = new(txtBio.Document.ContentStart, txtBio.Document.ContentEnd);
+                        character.Bio = bio.Text;
+                        character.UniverseId = Convert.ToInt32(cmbUniverse.SelectedValue);
+                        character.TeamId = Convert.ToInt32(cmbTeam.SelectedValue);
 
-                    string filename = "";
-                    string Unique = Guid.NewGuid().ToString();
-                    filename += Unique + dialog.SafeFileName;
-                    character.ImagePath = filename;
-                    database.Characters.Add(character);
-                    database.SaveChanges();
+                        string filename = "";
+                        string Unique = Guid.NewGuid().ToString();
+                        filename += Unique + dialog.SafeFileName;
+                        character.ImagePath = filename;
+                        database.Characters.Add(character);
+                        database.SaveChanges();
 
-                    File.Copy(txtImage.Text, @"Images//" + filename);
-                    MessageBox.Show("New Character was added successfully");
+                        File.Copy(txtImage.Text, @"Images//" + filename);
+                        MessageBox.Show("New Character was added successfully");
 
-                    txtCharacterNo.Clear();
-                    txtAlias.Clear();
-                    txtName.Clear();
-                    txtSurname.Clear();
-                    txtPassword.Clear();
-                    txtBio.Document.Blocks.Clear();
-                    txtImage.Clear();
-                    cmbUniverse.SelectedIndex = -1;
-                    cmbTeam.ItemsSource = teams;
-                    cmbTeam.SelectedIndex = -1; 
-                    CharacterImage.Source = new BitmapImage();
+                        txtCharacterNo.Clear();
+                        txtAlias.Clear();
+                        txtName.Clear();
+                        txtSurname.Clear();
+                        txtPassword.Clear();
+                        txtBio.Document.Blocks.Clear();
+                        txtImage.Clear();
+                        cmbUniverse.SelectedIndex = -1;
+                        cmbTeam.ItemsSource = teams;
+                        cmbTeam.SelectedIndex = -1;
+                        CharacterImage.Source = new BitmapImage();
+                    }
                 }
             }
         }
