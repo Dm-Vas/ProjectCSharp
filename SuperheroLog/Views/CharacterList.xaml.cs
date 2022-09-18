@@ -127,5 +127,23 @@ namespace SuperheroLog.Views
 
             gridCharacter.ItemsSource = list;
         }
+
+        private void BtnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to delete this character?",
+                "Question",
+                 MessageBoxButton.YesNo,
+                 MessageBoxImage.Warning)
+                 ==
+                 MessageBoxResult.Yes)
+            {
+                CharacterDetailModel model = (CharacterDetailModel)gridCharacter.SelectedItem;
+                Character character = database.Characters.Find(model.Id);
+                database.Characters.Remove(character);
+                database.SaveChanges();
+                MessageBox.Show("Character was deleted successfully");
+                FillDataGrid();
+            }
+        }
     }
 }
