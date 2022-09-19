@@ -14,16 +14,16 @@ namespace SuperheroLog.Views
         public UniverseList()
         {
             InitializeComponent();
-            using SUPERHEROBASEContext database = new();
+            using SuperheroDataContext database = new();
             List<Universe> list = database.Universes.OrderBy(univerce => univerce.UniverseName).ToList();
             gridUniverse.ItemsSource = list;
         }
 
-        private void BtnCreate_Click(object sender, RoutedEventArgs e)
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             UniverseWindow window = new();
             window.ShowDialog();
-            using SUPERHEROBASEContext database = new();
+            using SuperheroDataContext database = new();
             List<Universe> list = database.Universes.OrderBy(universe => universe.UniverseName).ToList();
             gridUniverse.ItemsSource = list;
         }
@@ -39,7 +39,7 @@ namespace SuperheroLog.Views
                     universe = universe
                 };
                 window.ShowDialog();
-                using SUPERHEROBASEContext database = new();
+                using SuperheroDataContext database = new();
                 gridUniverse.ItemsSource = database.Universes.OrderBy(universe => universe.UniverseName).ToList();
             }
 
@@ -58,7 +58,7 @@ namespace SuperheroLog.Views
                     == 
                     MessageBoxResult.Yes)
                 {
-                    SUPERHEROBASEContext database = new();
+                    SuperheroDataContext database = new();
 
                     List<Team> teams = database.Teams.Where(team => team.UniverseId == universe.Id).ToList();
                     foreach (var item in teams)
@@ -70,7 +70,7 @@ namespace SuperheroLog.Views
                     Universe department = database.Universes.Find(universe.Id);
                     database.Universes.Remove(department);
                     database.SaveChanges();
-                    MessageBox.Show("Item was deleted successfully");
+                    MessageBox.Show("Item was deleted successfully.");
                     gridUniverse.ItemsSource = database.Universes.OrderBy(universe => universe.UniverseName).ToList();
                 }
             }

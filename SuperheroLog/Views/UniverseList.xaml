@@ -21,11 +21,11 @@
             </Grid.ColumnDefinitions>
 
             <Button 
-                Name="btnCreate" 
+                Name="btnAdd" 
                 Content="Add"
                 Grid.Column="0" 
                 Cursor="Hand" 
-                Click="BtnCreate_Click"/>
+                Click="BtnAdd_Click"/>
 
             <Button 
                 Name="btnUpdate" 

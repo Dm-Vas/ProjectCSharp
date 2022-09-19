@@ -40,7 +40,7 @@
                 Content="Delete"
                 Grid.Column="2" 
                 Cursor="Hand" 
-                Click="btnDelete_Click"/>
+                Click="BtnDelete_Click"/>
         </Grid>
 
         <DataGrid 

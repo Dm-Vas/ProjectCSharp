@@ -19,87 +19,9 @@ namespace SuperheroLog.Views
             InitializeComponent();
         }
 
-        private void BtnAdd_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            CharacterWindow windwow = new();
-            windwow.ShowDialog();
-            FillDataGrid();
-        }
-
-        SUPERHEROBASEContext database = new();
+        SuperheroDataContext database = new();
         List<Team> teams = new();
         List<CharacterDetailModel> list = new();
-        private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            FillDataGrid();
-        }
-
-        private void CmbUniverse_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int UniverseId = Convert.ToInt32(cmbUniverse.SelectedValue);
-
-            if (cmbUniverse.SelectedIndex != -1)
-            {
-                cmbTeam.ItemsSource = teams.Where(team => team.UniverseId == UniverseId).ToList();
-                cmbTeam.DisplayMemberPath = "TeamName";
-                cmbTeam.SelectedValuePath = "Id";
-                cmbTeam.SelectedIndex = -1;
-            }
-        }
-
-        private void BtnSearch_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            List<CharacterDetailModel> searchlist = list;
-
-            if (txtCharacterNo.Text.Trim() != "")
-                searchlist = searchlist.Where(searchItem => searchItem.CharacterNo == Convert.ToInt32(txtCharacterNo.Text)).ToList();
-
-            if (txtAlias.Text.Trim() != "")
-                searchlist = searchlist.Where(searchItem => searchItem.Alias.ToLower().Contains(txtAlias.Text.ToLower())).ToList();
-
-            if (txtName.Text.Trim() != "")
-                searchlist = searchlist.Where(searchItem => searchItem.Name.ToLower().Contains(txtName.Text.ToLower())).ToList();
-
-            if (txtSurname.Text.Trim() != "")
-                searchlist = searchlist.Where(searchItem => searchItem.Surname.ToLower().Contains(txtSurname.Text.ToLower())).ToList();
-
-            if (cmbUniverse.SelectedIndex != -1)
-                searchlist = searchlist.Where(searchItem => searchItem.UniverseId == Convert.ToInt32(cmbUniverse.SelectedValue)).ToList();
-
-            if (cmbTeam.SelectedIndex != -1)
-                searchlist = searchlist.Where(searchItem => searchItem.TeamId == Convert.ToInt32(cmbTeam.SelectedValue)).ToList();
-
-            gridCharacter.ItemsSource = searchlist;
-
-        }
-
-        private void BtnClear_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            txtCharacterNo.Clear();
-            txtAlias.Clear();
-            txtName.Clear();
-            txtSurname.Clear();
-            cmbUniverse.SelectedIndex = -1;
-            cmbTeam.ItemsSource = teams;
-            cmbTeam.SelectedIndex = -1;
-            gridCharacter.ItemsSource = list;
-        }
-
-        private void BtnUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            CharacterDetailModel model = (CharacterDetailModel)gridCharacter.SelectedItem;
-
-            if (model != null && model.Id != 0)
-            {
-                CharacterWindow windopw = new()
-                {
-                    model = model
-                };
-                windopw.ShowDialog();
-                FillDataGrid();
-            }
-        }
-
         void FillDataGrid()
         {
             cmbUniverse.ItemsSource = database.Universes.ToList();
@@ -130,12 +52,84 @@ namespace SuperheroLog.Views
 
             gridCharacter.ItemsSource = list;
         }
+        private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            FillDataGrid();
+        }
+        private void CmbUniverse_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int UniverseId = Convert.ToInt32(cmbUniverse.SelectedValue);
 
+            if (cmbUniverse.SelectedIndex != -1)
+            {
+                cmbTeam.ItemsSource = teams.Where(team => team.UniverseId == UniverseId).ToList();
+                cmbTeam.DisplayMemberPath = "TeamName";
+                cmbTeam.SelectedValuePath = "Id";
+                cmbTeam.SelectedIndex = -1;
+            }
+        }
+        private void BtnSearch_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            List<CharacterDetailModel> searchlist = list;
+
+            if (txtCharacterNo.Text.Trim() != "")
+                searchlist = searchlist.Where(searchItem => searchItem.CharacterNo == Convert.ToInt32(txtCharacterNo.Text)).ToList();
+
+            if (txtAlias.Text.Trim() != "")
+                searchlist = searchlist.Where(searchItem => searchItem.Alias.ToLower().Contains(txtAlias.Text.ToLower())).ToList();
+
+            if (txtName.Text.Trim() != "")
+                searchlist = searchlist.Where(searchItem => searchItem.Name.ToLower().Contains(txtName.Text.ToLower())).ToList();
+
+            if (txtSurname.Text.Trim() != "")
+                searchlist = searchlist.Where(searchItem => searchItem.Surname.ToLower().Contains(txtSurname.Text.ToLower())).ToList();
+
+            if (cmbUniverse.SelectedIndex != -1)
+                searchlist = searchlist.Where(searchItem => searchItem.UniverseId == Convert.ToInt32(cmbUniverse.SelectedValue)).ToList();
+
+            if (cmbTeam.SelectedIndex != -1)
+                searchlist = searchlist.Where(searchItem => searchItem.TeamId == Convert.ToInt32(cmbTeam.SelectedValue)).ToList();
+
+            gridCharacter.ItemsSource = searchlist;
+
+        }
+        private void BtnClear_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            txtCharacterNo.Clear();
+            txtAlias.Clear();
+            txtName.Clear();
+            txtSurname.Clear();
+            cmbUniverse.SelectedIndex = -1;
+            cmbTeam.ItemsSource = teams;
+            cmbTeam.SelectedIndex = -1;
+            gridCharacter.ItemsSource = list;
+        }
+        private void BtnAdd_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            CharacterWindow windwow = new();
+            windwow.ShowDialog();
+            FillDataGrid();
+        }
+        private void BtnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            CharacterDetailModel model = (CharacterDetailModel)gridCharacter.SelectedItem;
+
+            if (model != null && model.Id != 0)
+            {
+                CharacterWindow windopw = new()
+                {
+                    model = model
+                };
+                windopw.ShowDialog();
+                FillDataGrid();
+            }
+        }
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
             CharacterDetailModel model = (CharacterDetailModel)gridCharacter.SelectedItem;
 
-            if (model != null && model.Id != 0) {
+            if (model != null && model.Id != 0)
+            {
                 if (MessageBox.Show("Are you sure you want to delete this character?",
                     "Question",
                     MessageBoxButton.YesNo,
@@ -146,7 +140,7 @@ namespace SuperheroLog.Views
                     Character character = database.Characters.Find(model.Id);
                     database.Characters.Remove(character);
                     database.SaveChanges();
-                    MessageBox.Show("Character was deleted successfully");
+                    MessageBox.Show("Character was deleted successfully.");
                     FillDataGrid();
                 }
             }

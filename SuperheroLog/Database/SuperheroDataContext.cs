@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace SuperheroLog.Database
 {
-    public partial class SUPERHEROBASEContext : DbContext
+    public partial class SuperheroDataContext : DbContext
     {
-        public SUPERHEROBASEContext()
+        public SuperheroDataContext()
         {
         }
 
-        public SUPERHEROBASEContext(DbContextOptions<SUPERHEROBASEContext> options)
+        public SuperheroDataContext(DbContextOptions<SuperheroDataContext> options)
             : base(options)
         {
         }
@@ -28,7 +28,7 @@ namespace SuperheroLog.Database
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=.; Database=SUPERHEROBASE; trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=.; Database=SuperheroData; trusted_Connection=True;");
             }
         }
 
@@ -49,17 +49,10 @@ namespace SuperheroLog.Database
 
                 entity.Property(e => e.Bio).IsUnicode(false);
 
-                entity.Property(e => e.ImagePath)
-                    .IsRequired()
-                    .IsUnicode(false);
+                entity.Property(e => e.ImagePath).IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Password)
-                    .IsRequired()
-                    .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Surname)
@@ -87,22 +80,18 @@ namespace SuperheroLog.Database
             {
                 entity.ToTable("MISSION");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.CharacterId).HasColumnName("CharacterID");
 
-                entity.Property(e => e.MissionDescription).IsUnicode(false);
-
-                entity.Property(e => e.MissionEndDate).HasColumnType("date");
+                entity.Property(e => e.MissionDescription)
+                    .IsRequired()
+                    .IsUnicode(false);
 
                 entity.Property(e => e.MissionName)
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
-
-                entity.Property(e => e.MissionStartDate).HasColumnType("date");
 
                 entity.HasOne(d => d.Character)
                     .WithMany(p => p.Missions)
@@ -125,7 +114,7 @@ namespace SuperheroLog.Database
 
                 entity.Property(e => e.StatusName)
                     .IsRequired()
-                    .HasMaxLength(50)
+                    .HasMaxLength(20)
                     .IsUnicode(false);
             });
 

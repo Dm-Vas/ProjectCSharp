@@ -18,7 +18,7 @@ namespace SuperheroLog.Views
             InitializeComponent();
         }
 
-        SUPERHEROBASEContext database = new();
+        SuperheroDataContext database = new();
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             FillGrid();
@@ -71,7 +71,7 @@ namespace SuperheroLog.Views
             }
         }
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
             TeamModel model = (TeamModel)gridTeam.SelectedItem;
 
@@ -87,7 +87,7 @@ namespace SuperheroLog.Views
                     Team team = database.Teams.Find(model.Id);
                     database.Teams.Remove(team);
                     database.SaveChanges();
-                    MessageBox.Show("Item was deleted successfully");
+                    MessageBox.Show("Item was deleted successfully.");
                     FillGrid();
                 }
             }

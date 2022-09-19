@@ -56,8 +56,7 @@
                 Grid.Row="2" 
                 Name="btnMissions"
                 Height="60"
-                Cursor="Hand" 
-                Click="BtnMissions_Click"/>
+                Cursor="Hand"/>
             
             <Button 
                 Content="Universes"

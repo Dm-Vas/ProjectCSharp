@@ -1,4 +1,6 @@
 ﻿using SuperheroLog.Database;
+using SuperheroLog.Views;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace SuperheroLog
@@ -14,14 +16,16 @@ namespace SuperheroLog
         }
 
         public Universe universe;
-
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (txtUniverseName.Text.Trim() == "")
-                MessageBox.Show("Universe Name cannot be empty");
+            if
+            (txtUniverseName.Text.Trim() == "")
+            {
+                MessageBox.Show("Universe Name cannot be empty.");
+            }
             else
             {
-                using SUPERHEROBASEContext database = new();
+                using SuperheroDataContext database = new();
 
                 if (universe != null && universe.Id != 0)
                 {
@@ -32,7 +36,7 @@ namespace SuperheroLog
                     };
                     database.Universes.Update(update);
                     database.SaveChanges();
-                    MessageBox.Show("Universe was updated succesfully");
+                    MessageBox.Show("Universe was updated succesfully.");
                 }
                 else
                 {
@@ -43,7 +47,7 @@ namespace SuperheroLog
                     database.Universes.Add(universe);
                     database.SaveChanges();
                     txtUniverseName.Clear();
-                    MessageBox.Show("New Universe was added succesfully");
+                    MessageBox.Show("New Universe was added succesfully.");
                 }
             }
         }

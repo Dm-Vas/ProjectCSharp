@@ -16,7 +16,7 @@ namespace SuperheroLog
             InitializeComponent();
         }
 
-        SUPERHEROBASEContext database = new();
+        SuperheroDataContext database = new();
         public TeamModel model;
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -38,7 +38,7 @@ namespace SuperheroLog
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             if (cmbUniverse.SelectedIndex == -1 || txtTeam.Text.Trim() == "")
-                MessageBox.Show("Please fill in all fields");
+                MessageBox.Show("Please fill in all fields.");
             else
             {
 
@@ -52,7 +52,7 @@ namespace SuperheroLog
                     };
                     database.Teams.Update(team);
                     database.SaveChanges();
-                    MessageBox.Show("Team was updated successfully");
+                    MessageBox.Show("Team was updated successfully.");
                 }
                 else {
                     Team team = new()
@@ -64,7 +64,7 @@ namespace SuperheroLog
                     database.SaveChanges();
                     cmbUniverse.SelectedIndex = -1;
                     txtTeam.Clear();
-                    MessageBox.Show("New Team was added successfully");
+                    MessageBox.Show("New Team was added successfully.");
                 }
             }
         }

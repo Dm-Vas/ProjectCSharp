@@ -36,7 +36,7 @@
         <Label
             Grid.Column="0"
             Grid.Row="0" 
-            Content="CharacterNo" 
+            Content="*CharacterNo" 
             HorizontalAlignment="Center" 
             VerticalAlignment="Center"
             Foreground="#ffffff"/>
@@ -52,7 +52,7 @@
         <Label
             Grid.Column="0"
             Grid.Row="1" 
-            Content="Alias" 
+            Content="*Alias" 
             HorizontalAlignment="Center" 
             VerticalAlignment="Center"
             Foreground="#ffffff"/>
@@ -136,7 +136,7 @@
         <Label
             Grid.Column="0"
             Grid.Row="5"
-            Content="Universe"  
+            Content="*Universe"  
             HorizontalAlignment="Center" 
             VerticalAlignment="Center"
             Foreground="#ffffff"/>
@@ -152,7 +152,7 @@
         <Label
             Grid.Column="0"
             Grid.Row="6"
-            Content="Team" 
+            Content="*Team" 
             HorizontalAlignment="Center" 
             VerticalAlignment="Center"
             Foreground="#ffffff"/>

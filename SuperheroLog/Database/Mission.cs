@@ -11,8 +11,6 @@ namespace SuperheroLog.Database
         public int CharacterId { get; set; }
         public string MissionName { get; set; }
         public string MissionDescription { get; set; }
-        public DateTime? MissionStartDate { get; set; }
-        public DateTime? MissionEndDate { get; set; }
         public int MissionStatus { get; set; }
 
         public virtual Character Character { get; set; }
