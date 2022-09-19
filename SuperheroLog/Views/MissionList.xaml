@@ -91,7 +91,7 @@
                 Grid.Column="2" 
                 x:Name="btnDelete"  
                 Content="Delete"   
-                Cursor="Hand"/>
+                Cursor="Hand" Click="BtnDelete_Click"/>
         </Grid>
     </Grid>
 </UserControl>

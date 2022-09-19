@@ -3,6 +3,7 @@ using SuperheroLog.Database;
 using SuperheroLog.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -71,6 +72,32 @@ namespace SuperheroLog.Views
                 window.model = model;
                 window.ShowDialog();
                 FillDataGrid();
+            }
+        }
+
+        private void BtnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (model != null && model.Id != 0)
+            {
+                if (MessageBox.Show("Are you sure you want to delete this mission?",
+                "Question",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning)
+                == MessageBoxResult.Yes
+                )
+                {
+                    if (model.Id != 0)
+                    {
+                        MissionDetailModel missionModel = (MissionDetailModel)gridMission.SelectedItem;
+                        Mission mission = database.Missions.First(mission => mission.Id == missionModel.Id);
+
+                        database.Missions.Remove(mission);
+                        database.SaveChanges();
+
+                        MessageBox.Show("Mission was deleted successfully.");
+                        FillDataGrid();
+                    }
+                }
             }
         }
     }
