@@ -181,7 +181,8 @@
                 Grid.Column="0" 
                 x:Name="btnAdd"  
                 Content="Add"  
-                Cursor="Hand"/>
+                Cursor="Hand" 
+                Click="BtnAdd_Click"/>
 
             <Button 
                 Grid.Column="1" 

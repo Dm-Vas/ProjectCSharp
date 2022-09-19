@@ -67,8 +67,8 @@ namespace SuperheroLog.Views
                     }
                     database.SaveChanges();
 
-                    Universe department = database.Universes.Find(universe.Id);
-                    database.Universes.Remove(department);
+                    Universe universeItem = database.Universes.Find(universe.Id);
+                    database.Universes.Remove(universeItem);
                     database.SaveChanges();
                     MessageBox.Show("Item was deleted successfully.");
                     gridUniverse.ItemsSource = database.Universes.OrderBy(universe => universe.UniverseName).ToList();

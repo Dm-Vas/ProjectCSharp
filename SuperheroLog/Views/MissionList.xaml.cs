@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace SuperheroLog.Views
 {
@@ -10,6 +11,12 @@ namespace SuperheroLog.Views
         public MissionList()
         {
             InitializeComponent();
+        }
+
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            MissionWindow window = new();
+            window.ShowDialog();
         }
     }
 }
