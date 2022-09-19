@@ -101,8 +101,11 @@ namespace SuperheroLog
                 if (model != null && model.Id != 0)
                 {
                     Character character = database.Characters.Find(model.Id);
-                    List<Character> characterList = database.Characters.Where(characterItem =>
-                    characterItem.CharacterNo == Convert.ToInt32(txtCharacterNo.Text) && characterItem.Id != character.Id).ToList();
+                    List<Character> characterList = database.Characters
+                        .Where(characterItem => characterItem.CharacterNo == Convert.ToInt32(txtCharacterNo.Text) &&
+                        characterItem.Id != character.Id)
+                        .ToList();
+
                     if (characterList.Count > 0)
                     {
                         MessageBox.Show("This Character Number is already taken. Please try a diffrerent one.");
@@ -122,14 +125,16 @@ namespace SuperheroLog
                             }
                         }
                         character.CharacterNo = Convert.ToInt32(txtCharacterNo.Text);
-                        TextRange Bio = new TextRange(txtBio.Document.ContentStart, txtBio.Document.ContentEnd);
+                        TextRange Bio = new(txtBio.Document.ContentStart, txtBio.Document.ContentEnd);
                         character.Bio = Bio.Text;
                         character.UniverseId = Convert.ToInt32(cmbUniverse.SelectedValue);
                         character.TeamId = Convert.ToInt32(cmbTeam.SelectedValue);
                         character.Alias = txtAlias.Text;
                         character.Name = txtName.Text;
                         character.Surname = txtSurname.Text;
+
                         database.SaveChanges();
+
                         MessageBox.Show("Character was updated successfully.");
                     }
                 }
@@ -156,13 +161,17 @@ namespace SuperheroLog
                         string Unique = Guid.NewGuid().ToString();
                         filename += Unique + dialog.SafeFileName;
                         character.ImagePath = filename;
+
                         database.Characters.Add(character);
                         database.SaveChanges();
+
                         if (txtImage.Text.Length > 0)
                         {
                             File.Copy(txtImage.Text, @"Images//" + filename);
                         }
+
                         MessageBox.Show("New Character was added successfully.");
+
                         txtCharacterNo.Clear();
                         txtAlias.Clear();
                         txtName.Clear();

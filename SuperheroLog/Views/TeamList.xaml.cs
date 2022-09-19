@@ -85,8 +85,10 @@ namespace SuperheroLog.Views
                     MessageBoxResult.Yes)
                 {
                     Team team = database.Teams.Find(model.Id);
+
                     database.Teams.Remove(team);
                     database.SaveChanges();
+
                     MessageBox.Show("Item was deleted successfully.");
                     FillGrid();
                 }

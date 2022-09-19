@@ -50,8 +50,10 @@ namespace SuperheroLog
                         Id = model.Id,
                         TeamName = txtTeam.Text
                     };
+
                     database.Teams.Update(team);
                     database.SaveChanges();
+
                     MessageBox.Show("Team was updated successfully.");
                 }
                 else {
@@ -60,10 +62,12 @@ namespace SuperheroLog
                         TeamName = txtTeam.Text,
                         UniverseId = Convert.ToInt32(cmbUniverse.SelectedValue)
                     };
+
                     database.Teams.Add(team);
                     database.SaveChanges();
                     cmbUniverse.SelectedIndex = -1;
                     txtTeam.Clear();
+
                     MessageBox.Show("New Team was added successfully.");
                 }
             }

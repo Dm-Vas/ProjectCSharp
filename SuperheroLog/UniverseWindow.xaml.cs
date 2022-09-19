@@ -34,8 +34,10 @@ namespace SuperheroLog
                         UniverseName = txtUniverseName.Text,
                         Id = universe.Id
                     };
+
                     database.Universes.Update(update);
                     database.SaveChanges();
+
                     MessageBox.Show("Universe was updated succesfully.");
                 }
                 else
@@ -44,8 +46,10 @@ namespace SuperheroLog
                     {
                         UniverseName = txtUniverseName.Text
                     };
+
                     database.Universes.Add(universe);
                     database.SaveChanges();
+
                     txtUniverseName.Clear();
                     MessageBox.Show("New Universe was added succesfully.");
                 }
