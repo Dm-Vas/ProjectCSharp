@@ -1,9 +1,12 @@
 ﻿using SuperheroLog.Database;
+using SuperheroLog.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Xml.Linq;
 
 namespace SuperheroLog
 {
@@ -16,12 +19,22 @@ namespace SuperheroLog
         {
             InitializeComponent();
         }
+
         SuperheroDataContext database = new();
         List<Character> characterList = new();
+        public MissionDetailModel model;
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             characterList = database.Characters.OrderBy(character => character.Alias).ToList();
             gridCharacter.ItemsSource = characterList;
+
+            if (model != null && model.Id != 0)
+            {
+                txtCharacterNo.Text = model.CharacterNo.ToString();
+                txtAlias.Text = model.Alias;
+                txtMissionName.Text = model.MissionName;
+                txtDescription.Text = model.MissionDescription;
+            }
         }
 
         int CharacterId = 0;
@@ -35,34 +48,56 @@ namespace SuperheroLog
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (CharacterId == 0)
-            {
-                MessageBox.Show("Please select a character from the table.");
-            }
-            else if(txtMissionName.Text.Trim() == "" || txtDescription.Text.Trim() == "")
+
+            if (txtMissionName.Text.Trim() == "" || txtDescription.Text.Trim() == "")
             {
                 MessageBox.Show("Please fill in all the required fields.");
             }
             else 
             {
-                Mission mission = new();
-                mission.CharacterId = CharacterId;
-                mission.MissionName = txtMissionName.Text;
-                mission.MissionDescription = txtDescription.Text;
-                mission.MissionStatus = Definitions.MissionStatuses.Draft;
+                if (model != null && model.Id != 0)
+                {
+                    Mission mission = database.Missions.Find(model.Id);
 
-                database.Missions.Add(mission);
-                database.SaveChanges();
+                    if (CharacterId != 0)
+                    {
+                        mission.CharacterId = CharacterId;
+                    }
 
-                MessageBox.Show("New mission was added successfully.");
+                    mission.MissionName = txtMissionName.Text;
+                    mission.MissionDescription = txtDescription.Text;
 
-                CharacterId = 0;
-                txtCharacterNo.Clear();
-                txtAlias.Clear();
-                txtDescription.Clear();
-                txtMissionName.Clear();
+                    database.SaveChanges();
+
+                    MessageBox.Show("Mission was updated successfully.");
+                }
+                else
+                {
+                    if (CharacterId == 0)
+                    {
+                        MessageBox.Show("Please select a character from the table.");
+                    }
+                    else 
+                    {
+                        Mission mission = new();
+                        mission.CharacterId = CharacterId;
+                        mission.MissionName = txtMissionName.Text;
+                        mission.MissionDescription = txtDescription.Text;
+                        mission.MissionStatus = Definitions.MissionStatuses.Draft;
+
+                        database.Missions.Add(mission);
+                        database.SaveChanges();
+
+                        MessageBox.Show("New mission was added successfully.");
+
+                        CharacterId = 0;
+                        txtCharacterNo.Clear();
+                        txtAlias.Clear();
+                        txtDescription.Clear();
+                        txtMissionName.Clear();
+                    }
+                }
             }
-    
         }
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)

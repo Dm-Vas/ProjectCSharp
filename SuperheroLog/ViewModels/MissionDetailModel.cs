@@ -10,5 +10,7 @@
         public int CharacterNo { get; set; }
         public string Alias { get; set; }
         public string StatusName { get; set; }
+        public int UniverseId { get; set; }
+        public int TeamId { get; set; }
     }
 }

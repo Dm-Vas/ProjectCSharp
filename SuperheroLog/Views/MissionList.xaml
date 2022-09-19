@@ -6,123 +6,20 @@
              xmlns:local="clr-namespace:SuperheroLog.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" 
-             d:DesignWidth="800">
+             d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="6*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="30"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
-            </Grid>
-
-            <Label 
-                Grid.Column="0" 
-                Grid.Row="0" 
-                Content="CharacterNo"  
-                HorizontalAlignment="Left"  
-                VerticalAlignment="Center"  
-                Foreground="#ffffff"  />
-
-            <TextBox  
-                Grid.Column="1"  
-                x:Name="txtCharacterNo"  
-                TextWrapping="Wrap"/>
-
-            <Label  
-                Grid.Column="0" 
-                Grid.Row="1" 
-                Content="Alias" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
-                Foreground="#ffffff"/>
-
-            <TextBox 
-                Grid.Column="1"  
-                Grid.Row="1"  
-                x:Name="txtAlias" 
-                TextWrapping="Wrap"/>
-
-            <Label  
-                Grid.Column="0" 
-                Grid.Row="2" 
-                Content="Universe"  
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
-                Foreground="#ffffff"/>
-
-            <ComboBox 
-                Grid.Column="1"  
-                Grid.Row="2" 
-                Name="cmbUniverse"/>
-
-            <Label 
-                Grid.Column="0" 
-                Grid.Row="3" 
-                Content="Team"  
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center"  
-                Foreground="#ffffff"/>
-
-            <ComboBox  
-               Grid.Column="1"  
-               Grid.Row="3"   
-               Name="cmbTeam"/>
-
-            <Label  
-                Grid.Column="3" 
-                Grid.Row="0" 
-                Content="Status" 
-                HorizontalAlignment="Left"  
-                VerticalAlignment="Center" 
-                Foreground="#ffffff"/>
-
-            <ComboBox 
-                Grid.Column="4"  
-                Grid.Row="0"  
-                Name="cmbStatus"  
-                Height="30"   
-                VerticalAlignment="Center"/>
-
-            <Button  
-                x:Name="btnSearch"  
-                Content="Search" 
-                Grid.Column="3"  
-                Grid.Row="2"/>
-
-            <Button  
-                x:Name="btnClear"  
-                Content="Clear"  
-                Grid.Column="4"  
-                Grid.Row="2"/>
-        </Grid>
-
+        
         <DataGrid  
             x:Name="gridMission"  
-            Grid.Row="1"  
+            Grid.Row="0"  
+            Grid.RowSpan="2"
             AutoGenerateColumns="False"  
-            IsReadOnly="True">
+            IsReadOnly="True" SelectionChanged="GridMission_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn 
                     Header="Id"  
@@ -141,7 +38,7 @@
                     Binding="{Binding Alias}" />
 
                 <DataGridTextColumn  
-                    Header="MissionName"  
+                    Header="Mission Name"  
                     Width="*"  
                     Binding="{Binding MissionName}" />
 
@@ -188,7 +85,7 @@
                 Grid.Column="1" 
                 x:Name="btnUpdate"  
                 Content="Update" 
-                Cursor="Hand"/>
+                Cursor="Hand" Click="BtnUpdate_Click"/>
 
             <Button 
                 Grid.Column="2" 
