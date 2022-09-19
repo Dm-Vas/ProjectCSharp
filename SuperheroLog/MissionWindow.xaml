@@ -124,10 +124,10 @@
             </Grid.RowDefinitions>
 
             <DataGrid  
-                Grid.Row="2"
                 Grid.ColumnSpan="2" 
                 Name="gridCharacter"
-                AutoGenerateColumns="False" 
+                AutoGenerateColumns="False"
+                IsReadOnly="True"
                 SelectionChanged="GridCharacter_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn  

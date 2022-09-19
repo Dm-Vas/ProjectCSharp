@@ -137,6 +137,12 @@ namespace SuperheroLog.Views
                     ==
                     MessageBoxResult.Yes)
                 {
+                    List<Mission> misionList = database.Missions.Where(mission => mission.CharacterId == model.Id).ToList();
+                    foreach (var mission in misionList) 
+                    { 
+                        database.Missions.Remove(mission);
+                    }
+
                     Character character = database.Characters.Find(model.Id);
                     database.Characters.Remove(character);
                     database.SaveChanges();

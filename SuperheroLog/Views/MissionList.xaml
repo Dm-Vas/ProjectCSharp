@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:SuperheroLog.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" 
-             d:DesignWidth="800" Loaded="UserControl_Loaded">
+             d:DesignWidth="800" 
+             Loaded="UserControl_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="5*"/>
@@ -19,7 +20,8 @@
             Grid.Row="0"  
             Grid.RowSpan="2"
             AutoGenerateColumns="False"  
-            IsReadOnly="True" SelectionChanged="GridMission_SelectionChanged">
+            IsReadOnly="True" 
+            SelectionChanged="GridMission_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn 
                     Header="Id"  
@@ -85,13 +87,15 @@
                 Grid.Column="1" 
                 x:Name="btnUpdate"  
                 Content="Update" 
-                Cursor="Hand" Click="BtnUpdate_Click"/>
+                Cursor="Hand" 
+                Click="BtnUpdate_Click"/>
 
             <Button 
                 Grid.Column="2" 
                 x:Name="btnDelete"  
                 Content="Delete"   
-                Cursor="Hand" Click="BtnDelete_Click"/>
+                Cursor="Hand" 
+                Click="BtnDelete_Click"/>
         </Grid>
     </Grid>
 </UserControl>

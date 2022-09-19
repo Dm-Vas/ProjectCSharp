@@ -11,31 +11,31 @@ namespace SuperheroLog
         public MainWindow()
         {
             InitializeComponent();
-            lblWindowName.Content = "Character List";
+            lblWindowName.Content = "List of Characters";
             DataContext = new CharacterViewModel();
         }
 
         private void BtnCharacters_Click(object sender, RoutedEventArgs e)
         {
-            lblWindowName.Content = "Character List";
+            lblWindowName.Content = "List of Characters";
             DataContext = new CharacterViewModel();
         }
 
         private void BtnUniverses_Click(object sender, RoutedEventArgs e)
         {
-            lblWindowName.Content = "Universe List";
+            lblWindowName.Content = "List of Universes";
             DataContext = new UniverseViewModel();
         }
 
         private void BtnTeams_Click(object sender, RoutedEventArgs e)
         {
-            lblWindowName.Content = "Team List";
+            lblWindowName.Content = "List of Teams";
             DataContext = new TeamViewModel();
         }
 
         private void BtnMissions_Click(object sender, RoutedEventArgs e)
         {
-            lblWindowName.Content = "Mission List";
+            lblWindowName.Content = "List of Missions";
             DataContext = new MissionViewModel();
         }
     } 
