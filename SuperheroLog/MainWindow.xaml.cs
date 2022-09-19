@@ -32,5 +32,11 @@ namespace SuperheroLog
             lblWindowName.Content = "Team List";
             DataContext = new TeamViewModel();
         }
-    }
+
+        private void BtnMissions_Click(object sender, RoutedEventArgs e)
+        {
+            lblWindowName.Content = "Mission List";
+            DataContext = new MissionViewModel();
+        }
+    } 
 }

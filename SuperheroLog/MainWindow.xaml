@@ -56,7 +56,8 @@
                 Grid.Row="2" 
                 Name="btnMissions"
                 Height="60"
-                Cursor="Hand"/>
+                Cursor="Hand" 
+                Click="BtnMissions_Click"/>
             
             <Button 
                 Content="Universes"
@@ -116,6 +117,14 @@
             <views:CharacterList>
 
             </views:CharacterList>
+        </DataTemplate>
+
+        <DataTemplate  
+            x:Name="MissionTemplate" 
+            DataType="{x:Type viewmodels:MissionViewModel}">
+            <views:MissionList>
+
+            </views:MissionList>
         </DataTemplate>
     </Window.Resources>
 </Window>

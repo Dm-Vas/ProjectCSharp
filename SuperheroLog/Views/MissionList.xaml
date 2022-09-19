@@ -1,0 +1,199 @@
+﻿<UserControl x:Class="SuperheroLog.Views.MissionList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SuperheroLog.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" 
+             d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+
+            <Label 
+                Grid.Column="0" 
+                Grid.Row="0" 
+                Content="CharacterNo"  
+                HorizontalAlignment="Left"  
+                VerticalAlignment="Center"  
+                Foreground="#ffffff"  />
+
+            <TextBox  
+                Grid.Column="1"  
+                x:Name="txtCharacterNo"  
+                TextWrapping="Wrap"/>
+
+            <Label  
+                Grid.Column="0" 
+                Grid.Row="1" 
+                Content="Alias" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" 
+                Foreground="#ffffff"/>
+
+            <TextBox 
+                Grid.Column="1"  
+                Grid.Row="1"  
+                x:Name="txtAlias" 
+                TextWrapping="Wrap"/>
+
+            <Label  
+                Grid.Column="0" 
+                Grid.Row="2" 
+                Content="Universe"  
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" 
+                Foreground="#ffffff"/>
+
+            <ComboBox 
+                Grid.Column="1"  
+                Grid.Row="2" 
+                Name="cmbUniverse"/>
+
+            <Label 
+                Grid.Column="0" 
+                Grid.Row="3" 
+                Content="Team"  
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center"  
+                Foreground="#ffffff"/>
+
+            <ComboBox  
+               Grid.Column="1"  
+               Grid.Row="3"   
+               Name="cmbTeam"/>
+
+            <Label  
+                Grid.Column="3" 
+                Grid.Row="0" 
+                Content="Status" 
+                HorizontalAlignment="Left"  
+                VerticalAlignment="Center" 
+                Foreground="#ffffff"/>
+
+            <ComboBox 
+                Grid.Column="4"  
+                Grid.Row="0"  
+                Name="cmbStatus"  
+                Height="30"   
+                VerticalAlignment="Center"/>
+
+            <Button  
+                x:Name="btnSearch"  
+                Content="Search" 
+                Grid.Column="3"  
+                Grid.Row="2"/>
+
+            <Button  
+                x:Name="btnClear"  
+                Content="Clear"  
+                Grid.Column="4"  
+                Grid.Row="2"/>
+        </Grid>
+
+        <DataGrid  
+            x:Name="gridMission"  
+            Grid.Row="1"  
+            AutoGenerateColumns="False"  
+            IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn 
+                    Header="Id"  
+                    Width="*"  
+                    Binding="{Binding Id}"  
+                    Visibility="Hidden"/>
+
+                <DataGridTextColumn  
+                    Header="CharacterNo"  
+                    Width="*" 
+                    Binding="{Binding CharacterNo}" />
+
+                <DataGridTextColumn  
+                    Header="Alias"  
+                    Width="*" 
+                    Binding="{Binding Alias}" />
+
+                <DataGridTextColumn  
+                    Header="MissionName"  
+                    Width="*"  
+                    Binding="{Binding MissionName}" />
+
+                <DataGridTextColumn  
+                    Header="Description" 
+                    Width="*"  
+                    Binding="{Binding MissionDescription}" 
+                    Visibility="Hidden" />
+
+                <DataGridTextColumn  
+                    Header="Status Name"  
+                    Width="*"  
+                    Binding="{Binding StatusName}" />
+
+                <DataGridTextColumn 
+                    Header="Mission Status"  
+                    Width="*" 
+                    Binding="{Binding MissionStatus}" 
+                    Visibility="Hidden"/>
+
+                <DataGridTextColumn  
+                    Header="CharacterId" 
+                    Width="*"  
+                    Binding="{Binding CharacterId}" 
+                    Visibility="Hidden"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button 
+                Grid.Column="0" 
+                x:Name="btnAdd"  
+                Content="Add"  
+                Cursor="Hand"/>
+
+            <Button 
+                Grid.Column="1" 
+                x:Name="btnUpdate"  
+                Content="Update" 
+                Cursor="Hand"/>
+
+            <Button 
+                Grid.Column="2" 
+                x:Name="btnDelete"  
+                Content="Delete"   
+                Cursor="Hand"/>
+        </Grid>
+    </Grid>
+</UserControl>
