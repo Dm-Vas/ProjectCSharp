@@ -13,11 +13,12 @@
         WindowStartupLocation="CenterScreen" 
         ResizeMode="NoResize" 
         FontSize="16" 
-        Background="#223C5B">
+        Background="#091C32">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
 
@@ -30,73 +31,67 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <ContentControl 
-            Content="{Binding}"
-            Grid.Column="1" 
-            Grid.Row="1"
-            Grid.RowSpan="4" 
-            Height="Auto"
-            Width="Auto"/>
+        <StackPanel 
+            Grid.Column="0" 
+            Grid.RowSpan="6"
+            Background="#1d334c">
+            
+            <TextBlock
+                Text="SUPERHERO LOG" 
+                HorizontalAlignment="Center"
+                Foreground="#ffffff"
+                FontWeight="Bold"
+                Margin="0,50,0,50"/>
 
-        <Label 
+            <Button 
+                Content="Characters"
+                Grid.Row="1" 
+                Name="btnCharacters"
+                Height="60"
+                Cursor="Hand"
+                Click="BtnCharacters_Click"/>
+
+            <Button
+                Content="Missions"
+                Grid.Row="2" 
+                Name="btnMissions"
+                Height="60"
+                Cursor="Hand" 
+                Click="BtnMissions_Click"/>
+            
+            <Button 
+                Content="Universes"
+                Grid.Row="3" 
+                Name="btnUniverses"
+                Height="60"
+                Cursor="Hand"
+                Click="BtnUniverses_Click"/>
+
+            <Button 
+                Content="Teams"
+                Grid.Row="4" 
+                Name="btnTeams"
+                Height="60"
+                Cursor="Hand"
+                Click="BtnTeams_Click"/>
+        </StackPanel>
+
+        <Label  
             x:Name="lblWindowName" 
             Content="Windows Name" 
-            Grid.Column="1" 
+            Grid.Column="2" 
             HorizontalAlignment="Center" 
             VerticalAlignment="Center" 
             FontSize="36" 
             Foreground="#ffffff"/>
 
-        <StackPanel 
-            Grid.Row="1" 
-            VerticalAlignment="Center">
-            <Button 
-                Content="Characters"
-                Grid.Row="1" 
-                Name="btnCharacters" 
-                Height="50" 
-                Width="150" 
-                Cursor="Hand"
-                Click="BtnCharacters_Click"/>
-        </StackPanel>
-
-        <StackPanel 
-            Grid.Row="2" 
-            VerticalAlignment="Center">
-            <Button 
-                Content="Missions"
-                Grid.Row="1" 
-                Name="btnMissions" 
-                Height="50"
-                Width="150"
-                Cursor="Hand" 
-        </StackPanel>
-
-        <StackPanel 
-            Grid.Row="3" 
-            VerticalAlignment="Center">
-            <Button 
-                Content="Universes"
-                Grid.Row="1" 
-                Name="btnUniverses" 
-                Height="50" 
-                Width="150" 
-                Cursor="Hand"
-                Click="BtnUniverses_Click"/>
-        </StackPanel>
-
-        <StackPanel 
-            Grid.Row="4" 
-            VerticalAlignment="Center">
-            <Button 
-                Content="Teams"
-                Grid.Row="1" 
-                Name="btnTeams" 
-                Height="50" 
-                Width="150" 
-                Cursor="Hand"
-                Click="BtnTeams_Click"/>
-        </StackPanel>
+        <ContentControl 
+            Content="{Binding}"
+            Grid.Column="2" 
+            Grid.Row="1"
+            Grid.RowSpan="4" 
+            Height="Auto"
+            Width="Auto"/>
     </Grid>
 
     <Window.Resources>

@@ -24,28 +24,22 @@
             <Button 
                 Name="btnAdd" 
                 Content="Add"
-                Grid.Column="0" 
-                FontSize="16"
+                Grid.Column="0"
                 Cursor="Hand" 
-                Margin="30,10,30,10" 
                 Click="BtnAdd_Click"/>
 
             <Button 
                 Name="btnUpdate" 
                 Content="Update"
                 Grid.Column="1" 
-                FontSize="16"
                 Cursor="Hand" 
-                Margin="30,10,30,10" 
                 Click="BtnUpdate_Click"/>
 
             <Button 
                 Name="btnDelete" 
                 Content="Delete"
                 Grid.Column="2" 
-                FontSize="16"
                 Cursor="Hand" 
-                Margin="30,10,30,10" 
                 Click="btnDelete_Click"/>
         </Grid>
 

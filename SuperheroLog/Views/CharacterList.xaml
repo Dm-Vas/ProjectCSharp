@@ -234,9 +234,8 @@
             x:Name="btnAdd" 
             Content="Add" 
             FontSize="16"
-            Grid.Column="1"
+            Grid.Column="2"
             Grid.Row="2"
-            Margin="10,5,10,5"
             Cursor="Hand" 
             Click="BtnAdd_Click"/>
         
@@ -244,9 +243,8 @@
             x:Name="btnUpdate"
             Content="Update"
             FontSize="16" 
-            Grid.Column="2" 
+            Grid.Column="3" 
             Grid.Row="2"
-            Margin="10,5,10,5"
             Cursor="Hand" 
             Click="BtnUpdate_Click"/>
         
@@ -254,9 +252,8 @@
             x:Name="btnDelete"
             Content="Delete" 
             FontSize="16"  
-            Grid.Column="3" 
+            Grid.Column="4" 
             Grid.Row="2"
-            Margin="10,5,10,5"
             Cursor="Hand" 
             Click="BtnDelete_Click"/>
     </Grid>

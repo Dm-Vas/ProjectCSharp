@@ -47,7 +47,6 @@ namespace SuperheroLog
                 cmbUniverse.SelectedValue = model.UniverseId;
                 cmbTeam.SelectedValue = model.TeamId;
                 txtBio.AppendText(model.Bio);
-                txtPassword.Text = model.Password;
                 BitmapImage image = new();
                 image.BeginInit();
                 image.UriSource = new Uri(@"Images/" + model.ImagePath, UriKind.RelativeOrAbsolute);
@@ -99,7 +98,6 @@ namespace SuperheroLog
             if (
                 txtCharacterNo.Text.Trim() == "" ||
                 txtAlias.Text.Trim() == "" ||
-                txtPassword.Text.Trim() == "" ||
                 txtImage.Text.Trim() == "" ||
                 cmbUniverse.SelectedIndex == -1 ||
                 cmbTeam.SelectedIndex == -1)
@@ -142,7 +140,6 @@ namespace SuperheroLog
                         character.Surname = txtSurname.Text;
                         character.UniverseId = Convert.ToInt32(cmbUniverse.SelectedValue);
                         character.TeamId = Convert.ToInt32(cmbTeam.SelectedValue);
-                        character.Password = txtPassword.Text;
                         TextRange Bio = new(txtBio.Document.ContentStart, txtBio.Document.ContentEnd);
                         character.Bio = Bio.Text;
                         database.SaveChanges();
@@ -165,7 +162,6 @@ namespace SuperheroLog
                             Alias = txtAlias.Text,
                             Name = txtName.Text,
                             Surname = txtSurname.Text,
-                            Password = txtPassword.Text
                         };
                         TextRange bio = new(txtBio.Document.ContentStart, txtBio.Document.ContentEnd);
                         character.Bio = bio.Text;
@@ -186,7 +182,6 @@ namespace SuperheroLog
                         txtAlias.Clear();
                         txtName.Clear();
                         txtSurname.Clear();
-                        txtPassword.Clear();
                         txtBio.Document.Blocks.Clear();
                         txtImage.Clear();
                         cmbUniverse.SelectedIndex = -1;

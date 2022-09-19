@@ -22,26 +22,27 @@ namespace SuperheroLog.Views
         private void BtnCreate_Click(object sender, RoutedEventArgs e)
         {
             UniverseWindow window = new();
-            this.Visibility = Visibility.Collapsed;
             window.ShowDialog();
             using SUPERHEROBASEContext database = new();
             List<Universe> list = database.Universes.OrderBy(universe => universe.UniverseName).ToList();
             gridUniverse.ItemsSource = list;
-            this.Visibility = Visibility.Visible;
         }
 
         private void BtnUpdate_Click(object sender, RoutedEventArgs e)
         {
             Universe universe = (Universe)gridUniverse.SelectedItem;
-            UniverseWindow window = new()
+
+            if (universe != null && universe.Id != 0) 
             {
-                universe = universe
-            };
-            this.Visibility = Visibility.Collapsed;
-            window.ShowDialog();
-            using SUPERHEROBASEContext database = new();
-            gridUniverse.ItemsSource = database.Universes.OrderBy(universe => universe.UniverseName).ToList();
-            this.Visibility = Visibility.Visible;
+                UniverseWindow window = new()
+                {
+                    universe = universe
+                };
+                window.ShowDialog();
+                using SUPERHEROBASEContext database = new();
+                gridUniverse.ItemsSource = database.Universes.OrderBy(universe => universe.UniverseName).ToList();
+            }
+
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)

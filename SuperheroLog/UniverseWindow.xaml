@@ -8,21 +8,20 @@
         Title="Universe Window" 
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize" 
-        Height="200" 
+        Height="150" 
         Width="500"        
         FontSize="16" 
-        FontWeight="Bold" 
-        Background="#223C5B" 
+        Background="#091C32" 
         Loaded="Window_Loaded">
-    <Grid>
+    <Grid Margin="15,0,15,15">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -39,18 +38,13 @@
             Grid.ColumnSpan="2"
             VerticalAlignment="Center" 
             TextWrapping="Wrap" 
-            Background="#ffffff"
-            Margin="30,0,30,0"/>
+            Background="#ffffff"/>
 
         <Button
             x:Name="btnSave" 
             Content="Save" 
             Grid.Row="1" 
             Grid.Column="1"
-            HorizontalAlignment="Center" 
-            VerticalAlignment="Center"
-            Width="130" 
-            Height="40"
             Cursor="Hand"
             Click="BtnSave_Click"/>
         
@@ -59,10 +53,6 @@
             Content="Close" 
             Grid.Row="1" 
             Grid.Column="2"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"
-            Width="130"
-            Height="40"
             Cursor="Hand"
             Click="BtnClose_Click"/>
     </Grid>

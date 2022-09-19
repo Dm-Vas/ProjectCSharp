@@ -11,19 +11,19 @@
         Height="200" 
         Width="500"        
         FontSize="16" 
-        FontWeight="Bold" 
-        Background="#223C5B" 
+        Background="#091C32" 
         Loaded="Window_Loaded">
-    <Grid>
+    <Grid Margin="15,15,15,15">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         
         <Label 
@@ -41,27 +41,18 @@
         
         <ComboBox 
             Name="cmbUniverse"
-            Grid.Column="1" 
-            Width="200"
-            HorizontalAlignment="Center" 
-            VerticalAlignment="Center"/>
+            Grid.Column="1"/>
 
         <TextBox 
             x:Name="txtTeam" 
             Grid.Row="1"
             Grid.Column="1"
-            Width="200"
-            TextWrapping="Wrap" 
-            HorizontalAlignment="Center" 
-            VerticalAlignment="Center"/>
+            TextWrapping="Wrap"/>
         
         <Button
             x:Name="btnSave" 
             Content="Save" 
-            Grid.Row="2"
-            Width="130" 
-            HorizontalAlignment="Center" 
-            VerticalAlignment="Center" 
+            Grid.Row="3"
             Cursor="Hand" 
             Click="BtnSave_Click"/>
         
@@ -69,10 +60,7 @@
             x:Name="btnClose" 
             Content="Close" 
             Grid.Column="1"
-            Grid.Row="2" 
-            Width="130" 
-            HorizontalAlignment="Center" 
-            VerticalAlignment="Center"
+            Grid.Row="3" 
             Cursor="Hand" 
             Click="BtnClose_Click"/>
     </Grid>

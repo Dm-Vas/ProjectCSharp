@@ -85,15 +85,19 @@ namespace SuperheroLog.Views
             gridCharacter.ItemsSource = list;
         }
 
-        private void BtnUpdate_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void BtnUpdate_Click(object sender, RoutedEventArgs e)
         {
             CharacterDetailModel model = (CharacterDetailModel)gridCharacter.SelectedItem;
-            CharacterWindow windopw = new()
+
+            if (model != null && model.Id != 0)
             {
-                model = model
-            };
-            windopw.ShowDialog();
-            FillDataGrid();
+                CharacterWindow windopw = new()
+                {
+                    model = model
+                };
+                windopw.ShowDialog();
+                FillDataGrid();
+            }
         }
 
         void FillDataGrid()
@@ -122,7 +126,6 @@ namespace SuperheroLog.Views
                 TeamId = character.TeamId,
                 TeamName = character.Team.TeamName,
                 ImagePath = character.ImagePath,
-                Password = character.Password
             }).ToList();
 
             gridCharacter.ItemsSource = list;
@@ -130,19 +133,22 @@ namespace SuperheroLog.Views
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to delete this character?",
-                "Question",
-                 MessageBoxButton.YesNo,
-                 MessageBoxImage.Warning)
-                 ==
-                 MessageBoxResult.Yes)
-            {
-                CharacterDetailModel model = (CharacterDetailModel)gridCharacter.SelectedItem;
-                Character character = database.Characters.Find(model.Id);
-                database.Characters.Remove(character);
-                database.SaveChanges();
-                MessageBox.Show("Character was deleted successfully");
-                FillDataGrid();
+            CharacterDetailModel model = (CharacterDetailModel)gridCharacter.SelectedItem;
+
+            if (model != null && model.Id != 0) {
+                if (MessageBox.Show("Are you sure you want to delete this character?",
+                    "Question",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning)
+                    ==
+                    MessageBoxResult.Yes)
+                {
+                    Character character = database.Characters.Find(model.Id);
+                    database.Characters.Remove(character);
+                    database.SaveChanges();
+                    MessageBox.Show("Character was deleted successfully");
+                    FillDataGrid();
+                }
             }
         }
     }
